@@ -49,12 +49,16 @@ const StripeCheckout = ({ history }) => {
       },
     });
 
+    
+
     if (payload.error) {
+      console.log("PAYLOAD ERROR: ", payload.error.message)
       setError(`Pagamento negado. ${payload.error.message}`);
       setProcessing(false);
     } else {
       // here you get result after successful payment
       // create order and save in database for admin to process
+      console.log("CREATING ORDER PAYLOAD: ", payload)
       createOrder(payload, user.token)
       .then((res) => {
         if (res.data.ok) {

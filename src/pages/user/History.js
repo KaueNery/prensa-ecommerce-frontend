@@ -30,7 +30,7 @@ const History = () => {
           <th scope="col">Preço</th>
           <th scope="col">Cor</th>
           <th scope="col">Quantidade</th>
-          <th scope="col">Entrega</th>
+          <th scope="col">Status do Pedido</th>
         </tr>
       </thead>
 
@@ -44,11 +44,7 @@ const History = () => {
             <td>{p.color}</td>
             <td>{p.count}</td>
             <td>
-              {p.product.shipping === "Yes" ? (
-                <CheckCircleOutlined style={{ color: "green" }} />
-              ) : (
-                <CloseCircleOutlined style={{ color: "red" }} />
-              )}
+              {order.orderStatus }
             </td>
           </tr>
         ))}
