@@ -32,8 +32,8 @@ const NewArrivals = () => {
     <>
       <br/>
       <div className="container">
-        <hr/>
-        {/* <h4 className="text-center mt-5 mb-5">Novidades</h4> */}
+       
+        <h4 className="text-center mt-5 mb-5">Novidades</h4> 
           { loading ? <LoadingCard count={3}/> : <div className="row">
               {products.map((product) => (
                 <div key={product._id} className="col w-10">

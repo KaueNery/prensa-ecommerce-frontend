@@ -16,6 +16,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from 'react-router-dom';
 import Search from "../forms/Search";
 import { getCategories } from '../../functions/category';
+import Logo from '../../images/LOGO.png'
 
 const { SubMenu, Item } = Menu;
 
@@ -58,7 +59,11 @@ const Header = () => {
     <Menu onClick={handleClick} selectedKeys={[current]} mode="horizontal">
        
         
-        <SubMenu icon={<AppstoreOutlined />} >
+        <SubMenu icon={<img src={Logo} style={{
+                objectFit: "cover",
+                height: "20px",
+                width: "50px"
+              }} />} >
         <Link to="/"></Link>
           <Item>
               <Link to="/">Home</Link>
@@ -85,12 +90,12 @@ const Header = () => {
 
         <Link to="/cart" style={{marginLeft : 'auto'}}>
           <Item key="cart" icon={<ShoppingCartOutlined />}  >
-            
-              <Badge count={cart.length} offset={[9, 0]}>
+              <Badge count={cart.length} offset={[1, 0]}>
               </Badge>
-            
           </Item>
         </Link>
+
+        
 
         {!user && (
           <Item key="register" icon={<UserAddOutlined /> } >

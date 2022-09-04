@@ -11,6 +11,7 @@ import { toast } from "react-toastify";
 import ReactQuill from 'react-quill';
 import "react-quill/dist/quill.snow.css";
 import { useNavigate, Link } from 'react-router-dom';
+import AddressCard from "../components/cards/AddressCard";
 
 const Checkout = () => {
     const dispatch = useDispatch(); 
@@ -26,7 +27,6 @@ const Checkout = () => {
     let navigate = useNavigate();
 
     useEffect(() => {
-        alert(user)
         getUserCart(user.token) 
         .then((res) => {
             setProducts(res.data.products)
@@ -90,9 +90,7 @@ const Checkout = () => {
 
     const showAddress = () => (
         <>
-         <ReactQuill theme="snow" value={address} onChange={setAddress}/>
-            <br/>
-         <Button type="primary" className="btn btn-primary mt-2" onClick={saveAddressToDb}>Salvar</Button>
+          <AddressCard />
         </>
       );
 
@@ -124,12 +122,13 @@ const Checkout = () => {
     );
 
     return (
+        <div className="container-fluid">
+            <br/>
         <div className="row">
             <div className="col-md-6">
-                <h4>Endereço de entrega</h4>
                 {showAddress()}
                 <br/>
-                <hr/>
+                
                 <h4>Cupom de desconto</h4>
                 <br/>
                 {showApplyCoupon()}
@@ -159,7 +158,6 @@ const Checkout = () => {
                         <Button 
                             type="primary" 
                             className="btn btn-primary" 
-                            disabled={!addressSaved} 
                             onClick={() => navigate(`/payment`)} 
                         >
                             Finalizar Pedido
@@ -177,6 +175,7 @@ const Checkout = () => {
                 </div>
             </div>
 
+        </div>
         </div>
     )
 }

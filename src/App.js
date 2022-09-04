@@ -50,6 +50,8 @@ const UserRoute = lazy(() => import("./components/routes/UserRoute"));
 const AdminRoute = lazy(() => import("./components/routes/AdminRoute"));
 const Password = lazy(() => import("./pages/user/Password"));
 const Wishlist = lazy(() => import("./pages/user/Wishlist"));
+const CustomerData = lazy(() => import("./pages/user/CustomerData"));
+const SaveAddress = lazy(() => import("./pages/user/SaveAddress"));
 const AdminDashboard = lazy(() => import("./pages/admin/AdminDashboard"));
 const CategoryCreate = lazy(() =>
   import("./pages/admin/category/CategoryCreate")
@@ -107,9 +109,9 @@ const App = () => {
     <Suspense
       fallback={
         <div className="col text-center p-5">
-          __ React Redux EC
+          PRENSA C
           <LoadingOutlined />
-          MMERCE __
+          OMPANY
         </div>
       }
     >
@@ -125,7 +127,8 @@ const App = () => {
         <Route exact path="/user/history" element={<UserRoute><History /></UserRoute>} />
         <Route exact path="/user/password" element={<UserRoute><Password /></UserRoute>} />
         <Route exact path="/user/wishlist" element={<UserRoute><Wishlist /></UserRoute>} />
-        <Route exact path="/user/wishlist" element={<UserRoute><Wishlist /></UserRoute>} />
+        <Route exact path="/user/address" element={<UserRoute><SaveAddress /></UserRoute>} />
+        <Route exact path="/user/data" element={<UserRoute><CustomerData /></UserRoute>} />
         <Route exact path="/admin/dashboard" element={<AdminRoute><AdminDashboard /></AdminRoute>} />
         <Route exact path="/admin/category" element={<AdminRoute><CategoryCreate /></AdminRoute>} />
         <Route exact path="/admin/category/:slug" element={<AdminRoute><CategoryUpdate /></AdminRoute>} />
