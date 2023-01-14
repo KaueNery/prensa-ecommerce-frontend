@@ -12,8 +12,10 @@ import ReactQuill from 'react-quill';
 import "react-quill/dist/quill.snow.css";
 import { useNavigate, Link } from 'react-router-dom';
 import AddressCard from "../components/cards/AddressCard";
+import { useScript } from 'usehooks-ts'
 
-const Checkout = () => {
+const Checkout = props => {
+    useScript('https://assets.pagar.me/checkout/checkout.js');
     const dispatch = useDispatch(); 
     const { user } = useSelector((state) => ({...state}));
     const [products, setProducts] = useState([]); 
@@ -33,6 +35,27 @@ const Checkout = () => {
             setTotal(res.data.cartTotal);
         });
     }, []);
+
+    const handleSubmit = async (e) => {
+        const checkout = new window.PagarMeCheckout.Checkout({
+        encryption_key: 'SUA ENCRYPTION KEY',
+        success: function(data) {
+            console.log(data);
+        },
+        error: function(err) {
+            console.log(err);
+        },
+        close: function() {
+            console.log('The modal has been closed.');
+        }
+        }); 
+
+        checkout.open({
+    
+        "createToken": false,
+        // "amount": this.props.chosen.amountCentavos
+        })
+    }
 
     const saveAddressToDb = () => {
         // console.log(address);
@@ -155,12 +178,19 @@ const Checkout = () => {
                 <br/>
                 <div className="row">
                     <div className="col-md-6">
-                        <Button 
+                        {/* <Button 
                             type="primary" 
                             className="btn btn-primary" 
                             onClick={() => navigate(`/payment`)} 
                         >
                             Finalizar Pedido
+                        </Button> */}
+                        <Button 
+                            type="primary" 
+                            className="btn btn-sm btn-primary mt-2"
+                            onClick={handleSubmit}
+                        >
+                                Finalizar Pedido
                         </Button>
                     </div>
                     <div className="col-md-6">
